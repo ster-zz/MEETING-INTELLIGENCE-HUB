@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Intelligence Hub - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Meeting Intelligence Hub</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="upload.html">Upload</a>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="page-header">
+            <h1>Recent Meetings</h1>
+            <p>Your AI-analyzed meeting intelligence dashboard</p>
+        </header>
+
+        <section class="meetings-grid" id="meetings-list">
+            <!-- Meetings will be injected here via JS -->
+            <div class="loading">Loading meetings...</div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchMeetings);
+    </script>
+</body>
+</html>

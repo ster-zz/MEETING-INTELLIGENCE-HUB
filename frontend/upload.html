@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Meeting - Meeting Intelligence Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Meeting Intelligence Hub</div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="upload.html" class="active">Upload</a>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="page-header">
+            <h1>Upload Transcript</h1>
+            <p>Supported formats: .txt, .vtt</p>
+        </header>
+
+        <section class="upload-section glass-card">
+            <form id="upload-form" class="upload-form">
+                <div class="file-drop-area">
+                    <span class="file-msg">Drag & Drop your transcript here or Click to browse</span>
+                    <input class="file-input" type="file" id="transcript-file" accept=".txt,.vtt" required>
+                </div>
+                <button type="submit" class="btn primary-btn" id="upload-btn">Upload & Analyze</button>
+            </form>
+            <div id="upload-status" class="status-message"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', handleUpload);
+    </script>
+</body>
+</html>

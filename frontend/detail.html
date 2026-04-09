@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Detail - Meeting Intelligence Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Meeting Intelligence Hub</div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="upload.html">Upload</a>
+        </div>
+    </nav>
+    
+    <main class="container detail-container">
+        <header class="page-header">
+            <h1 id="meeting-title">Loading...</h1>
+            <p id="meeting-date"></p>
+        </header>
+
+        <div class="grid-layout">
+            <section class="insights-section">
+                <!-- Decisions -->
+                <div class="glass-card">
+                    <h2>Key Decisions</h2>
+                    <ul id="decisions-list" class="styled-list">
+                        <li class="loading">Loading...</li>
+                    </ul>
+                </div>
+
+                <!-- Action Items -->
+                <div class="glass-card mt-2">
+                    <h2>Action Items</h2>
+                    <div class="table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Owner</th>
+                                </tr>
+                            </thead>
+                            <tbody id="action-items-list">
+                                <tr><td colspan="2" class="loading">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chatbot Interface -->
+            <section class="chat-section glass-card">
+                <h2>Ask about this meeting</h2>
+                <div class="chat-window" id="chat-window">
+                    <div class="message system">Hi! Ask me anything about this meeting's context.</div>
+                </div>
+                <form id="chat-form" class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="e.g. Why did we choose FastAPI?" required>
+                    <button type="submit" class="btn primary-btn">Send</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js?v=2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchMeetingDetails);
+    </script>
+</body>
+</html>
