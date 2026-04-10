@@ -12,38 +12,64 @@ def extract_insights(transcript_text: str) -> dict:
 
     client = Groq(api_key=api_key)
 
-    safe_text = transcript_text[:4000]
+    # Increase limit to 50,000 chars (~12k tokens) which is very safe for LLaMA 3.3 128k context
+    safe_text = transcript_text[:50000]
 
-    prompt = f"""You are an expert AI system extracting structured information from meeting transcripts.
+    prompt = f"""You are a principal-level AI meeting analyst. Your goal is to deeply analyze the provided transcript and extract EVERY meaningful insight, including emotional dynamics and chronological mood shifts.
 
-Definitions:
-* A "Decision" is a clear agreement, resolution, or final conclusion reached during the meeting.
-* An "Action Item" is a task assigned to a specific person.
+CRITICAL INSTRUCTIONS:
+- Be extremely granular and comprehensive. 
+- Do not summarize multiple points into one; extract each distinct decision and action item separately.
+- Scan the entire transcript for hidden tasks or agreements.
 
-Extract:
-1. Decisions (list of strings)
-2. Action Items:
-   * owner (person responsible)
-   * task (what needs to be done)
-   * deadline (if not mentioned, return "Not specified")
+Extract the following data into a strict JSON structure:
+1. "summary": A concise 2-3 sentence overview of the meeting's main objective and vibe.
+2. "overall_sentiment": Exactly one of "Positive", "Neutral", "Negative".
+3. "sentiment_timeline": An array of 5 indices representing chronological segments of the meeting. Each object must have:
+   - "segment": A label (e.g., "0-20%", "20-40%", etc.).
+   - "sentiment": "Positive", "Neutral", or "Negative".
+4. "speaker_sentiment": An array of objects for each unique participant:
+   - "name": Speaker's name.
+   - "sentiment": "Positive", "Neutral", or "Negative".
+   - "note": 1-sentence explanation of their general stance/tone.
+5. "key_moments": Array of 2-4 objects highlighting emotional inflection points:
+   - "type": "Conflict", "Agreement", or "Concern".
+   - "text": A relevant dialogue snippet (e.g., "Speaker: Phrase").
+6. "decisions": Array of objects containing:
+   - "decision": The specific conclusion or agreement reached.
+   - "rationale": The reason or context for this choice.
+7. "action_items": Array of objects containing:
+   - "owner": The person responsible (use "Unassigned" if ambiguous).
+   - "task": The specific, exhaustive action required.
+   - "deadline": The deadline, or "Not specified".
+   - "priority": "High", "Medium", or "Low" based on the urgency/tone.
 
 Return ONLY valid JSON in this exact format with no markdown, no explanation, no extra text:
 {{
-"decisions": ["..."],
-"action_items": [
-{{
-"owner": "...",
-"task": "...",
-"deadline": "..."
-}}
-]
+  "summary": "...",
+  "overall_sentiment": "...",
+  "sentiment_timeline": [
+    {{"segment": "...", "sentiment": "..."}}
+  ],
+  "speaker_sentiment": [
+    {{"name": "...", "sentiment": "...", "note": "..."}}
+  ],
+  "key_moments": [
+    {{"type": "...", "text": "..."}}
+  ],
+  "decisions": [
+    {{"decision": "...", "rationale": "..."}}
+  ],
+  "action_items": [
+    {{"owner": "...", "task": "...", "deadline": "...", "priority": "..."}}
+  ]
 }}
 
 Meeting Transcript:
 {safe_text}
 """
 
-    fallback = {"decisions": [], "action_items": []}
+    fallback = {"summary": "Extraction failed", "decisions": [], "action_items": []}
 
     def _call_and_parse():
         response = client.chat.completions.create(

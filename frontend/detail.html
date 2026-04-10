@@ -18,12 +18,34 @@
     
     <main class="container detail-container">
         <header class="page-header">
-            <h1 id="meeting-title">Loading...</h1>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <h1 id="meeting-title">Loading...</h1>
+                <span id="sentiment-indicator" title="Meeting Vibe"></span>
+            </div>
             <p id="meeting-date"></p>
+            <div id="sentiment-timeline-container" class="timeline-container mt-1" style="display: none;">
+                <h3 class="small-title">Meeting Sentiment Timeline</h3>
+                <div id="sentiment-timeline" class="timeline-bar"></div>
+            </div>
+            <p id="meeting-summary" class="mt-2" style="font-style: italic; opacity: 0.8;"></p>
         </header>
 
         <div class="grid-layout">
             <section class="insights-section">
+                <!-- Speaker Breakdown -->
+                <div class="glass-card mb-2" id="speaker-card" style="display: none;">
+                    <h2>Speaker Insights</h2>
+                    <div id="speaker-list" class="speaker-grid">
+                    </div>
+                </div>
+
+                <!-- Key Moments -->
+                <div class="glass-card mb-2" id="moments-card" style="display: none;">
+                    <h2>Key Moments</h2>
+                    <ul id="moments-list" class="styled-list small-text">
+                    </ul>
+                </div>
+
                 <!-- Decisions -->
                 <div class="glass-card">
                     <h2>Key Decisions</h2>
@@ -65,7 +87,7 @@
         </div>
     </main>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=4"></script>
     <script>
         document.addEventListener('DOMContentLoaded', fetchMeetingDetails);
     </script>

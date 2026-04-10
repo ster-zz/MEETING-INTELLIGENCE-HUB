@@ -1,42 +1,55 @@
-# Meeting Intelligence Hub
+# 🚀 Meeting Intelligence Hub
 
-A fast, beautifully designed AI-powered web application that perfectly extracts **decisions and action items** from raw meeting transcripts. 
+Transform messy meeting transcripts into **structured business intelligence** in seconds. Built for speed, clarity, and "visual excellence."
 
-It handles routing entirely in Python, using local JSON storage for a zero-config database and the lightning-fast Groq API for AI extraction.
+![Dashboard Screenshot](https://raw.githubusercontent.com/ster-zz/MEETING-INTELLIGENCE-HUB/main/preview.png)
 
-## Prerequisites
+## ✨ Highlight Features
+- **Instant Intelligence**: Extracts granular decisions, action items, and rationale from text/VTT files.
+- **Sentiment Dashboard (Feature 4)**: A visual analytics suite including a chronological "vibe" timeline and per-speaker mood breakdown.
+- **Hybrid RAG Chatbot**: Chat with your meeting context. If the meeting doesn't have the answer, the AI automatically searches the web to provide real-time supplemental info.
+- **Zero-Latency Inference**: Powered by LLaMA 3.3 via the Groq LPU engine.
+- **Context Handling**: Robust processing of transcripts up to 50,000 characters.
 
-- **Python 3.10+**
-- A **Groq API Key** (Free tier is generous and lightning-fast. Get one at [console.groq.com](https://console.groq.com))
+## 🛠️ Tech Stack
+- **Backend**: FastAPI (Python)
+- **AI Engine**: Groq (LLaMA 3.3 70B Versatile)
+- **Frontend**: Glassmorphism UI (Vanilla CSS/JS)
+- **Search Logic**: Dependency-free Lexical RAG + Google/Web augmentation.
 
-## Setup & Installation
+## ⚙️ Quick Setup
 
-1. **Clone the project & open terminal in the project root**
-2. **Install dependencies:**
+1. **Clone the Repo**:
+   ```bash
+   git clone https://github.com/ster-zz/MEETING-INTELLIGENCE-HUB.git
+   cd MEETING-INTELLIGENCE-HUB
+   ```
+
+2. **Install Dependencies**:
    ```bash
    pip install -r backend/requirements.txt
    ```
-3. **Configure Environment Variables:**
-   - Create a file named `.env` inside the `backend/` directory.
-   - Add your Groq API key:
-     ```env
-     GROQ_API_KEY="your_api_key_here"
-     ```
 
-## Running the Application
+3. **Configure API Key**:
+   Create `backend/.env` and add:
+   ```env
+   GROQ_API_KEY="your_groq_api_key"
+   ```
 
-This app hosts both the backend API and the static frontend UI on a single unified port to eliminate CORS issues.
+4. **Run the Engine**:
+   ```bash
+   uvicorn backend.main:app --host 127.0.0.1 --port 8000
+   ```
 
-From the **project root directory**, run:
-```bash
-uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
-```
+5. **Open the Dashboard**:
+   Navigate to [http://127.0.0.1:8000/ui/index.html](http://127.0.0.1:8000/ui/index.html)
 
-Once running, open your browser and navigate to:
-**[http://127.0.0.1:8000/ui/index.html](http://127.0.0.1:8000/ui/index.html)**
+## 📖 Evaluation Checklist (Core Features)
+- [x] Correct extraction of Decisions & Action Items.
+- [x] Automatic Owner Assignment & Priority tagging.
+- [x] Robust VTT/Transcript parsing.
+- [x] Analytical Sentiment & Tone Timeline.
+- [x] Real-time Web-Augmented RAG Chatbot.
 
-## How to Test
-1. Go to the URL above.
-2. Click "Upload" or navigate to `/ui/upload.html`.
-3. Drag and drop any `.txt` meeting transcript.
-4. Watch the AI instantaneously parse out all action items and link them to their assigned users!
+---
+*Created for the AI Sprint Final Submission.*

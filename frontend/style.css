@@ -56,6 +56,7 @@ a { text-decoration: none; color: inherit; }
     font-weight: 700;
     background: linear-gradient(to right, var(--primary), var(--accent));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
@@ -269,3 +270,95 @@ a { text-decoration: none; color: inherit; }
 .meeting-card p {
     color: var(--text-muted);
 }
+
+/* Sentiment Indicators */
+#sentiment-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.sentiment-Positive { background-color: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+.sentiment-Neutral { background-color: #eab308; box-shadow: 0 0 10px rgba(234, 179, 8, 0.5); }
+.sentiment-Negative { background-color: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+
+.small-text { font-size: 0.9rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+.moment-type {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+}
+
+.type-Conflict { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+.type-Agreement { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.type-Concern { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+
+/* Timeline UI */
+.timeline-container {
+    max-width: 600px;
+    margin: 1rem auto;
+}
+.small-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+.timeline-bar {
+    height: 12px;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+}
+.timeline-segment {
+    height: 100%;
+    flex: 1;
+    transition: width 0.3s ease;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+.timeline-segment:last-child { border-right: none; }
+
+/* Speaker Grid */
+.speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.speaker-pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.speaker-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+}
+.speaker-mood {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    display: inline-block;
+}
+.speaker-note {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    display: block;
+    margin-top: 4px;
+}
+
+.mt-1 { margin-top: 1rem; }
