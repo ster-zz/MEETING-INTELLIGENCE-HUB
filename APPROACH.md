@@ -66,6 +66,4 @@ Initially, the system utilized the Gemini API. However, due to rate limits and c
 3. **Live Transcription**: Integrate Whisper for real-time speech-to-intent capabilities.
 4. **Action Item Sync**: Export directly to Slack, Jira, or Trello.
 
----
-**Prepared for**: AI Sprint Final Submission
-**Repository**: [https://github.com/ster-zz/MEETING-INTELLIGENCE-HUB](https://github.com/ster-zz/MEETING-INTELLIGENCE-HUB)
+
