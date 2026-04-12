@@ -23,7 +23,7 @@ CRITICAL INSTRUCTIONS:
 - Scan the entire transcript for hidden tasks or agreements.
 
 Extract the following data into a strict JSON structure:
-1. "summary": A concise 2-3 sentence overview of the meeting's main objective and vibe.
+1. "summary": A deep, comprehensive analysis of 400-800 characters, capturing nuances, subtexts, and all major discussion points.
 2. "overall_sentiment": Exactly one of "Positive", "Neutral", "Negative".
 3. "sentiment_timeline": An array of 5 indices representing chronological segments of the meeting. Each object must have:
    - "segment": A label (e.g., "0-20%", "20-40%", etc.).

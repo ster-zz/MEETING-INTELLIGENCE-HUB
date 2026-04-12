@@ -1,4 +1,4 @@
-# 🚀 Meeting Intelligence Hub
+# 🚀 DECISIO
 
 Transform messy meeting transcripts into **structured business intelligence** in seconds. Built for speed, clarity, and "visual excellence."
 

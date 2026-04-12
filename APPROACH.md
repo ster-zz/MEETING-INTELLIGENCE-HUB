@@ -1,4 +1,4 @@
-# Approach Document: Meeting Intelligence Hub
+# Approach Document: DECISIO
 
 ## 0. Problem Overview
 Modern teams generate large volumes of meeting transcripts, but extracting actionable insights from them is inefficient and time-consuming. This results in what we define as the **“Double Work Problem”**, where team members repeatedly revisit discussions instead of executing decisions.
@@ -20,7 +20,7 @@ The system follows a clear end-to-end pipeline:
 ---
 
 ## 2. Solution Design & Architecture
-The Meeting Intelligence Hub is a modular, lightweight AI system with a clear separation of concerns:
+The DECISIO hub is a modular, lightweight AI system with a clear separation of concerns:
 - **Frontend**: A high-impact "Glassmorphism" UI built with Vanilla JS/CSS for speed and visual excellence.
 - **Backend (FastAPI)**: A high-performance Python server chosen for its async capabilities and native FastAPI/Pydantic validation.
 - **Intelligence Layer**: Powered by Groq (LLaMA 3.3 70B), providing principal-level reasoning with industry-leading inference speeds.

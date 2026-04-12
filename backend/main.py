@@ -18,7 +18,7 @@ from backend.parser import parse_transcript
 from backend.rag import RAGService
 from groq import Groq
 
-app = FastAPI(title="Meeting Intelligence Hub API")
+app = FastAPI(title="DECISIO API")
 
 # Initialize in-memory Lexical RAG
 rag_service = RAGService()
@@ -199,9 +199,19 @@ async def get_meeting_detail(meeting_id: str):
             return m
     raise HTTPException(status_code=404, detail="Meeting not found")
 
-@app.post("/api/chat")
-async def chat(request: ChatRequest):
-    return {"reply": f"This is a placeholder reply for meeting {request.meeting_id} regarding '{request.message}'"}
+class RenameRequest(BaseModel):
+    title: str
+
+@app.patch("/api/meetings/{meeting_id}")
+async def rename_meeting(meeting_id: str, request: RenameRequest):
+    data = load_meetings()
+    for m in data.get("meetings", []):
+        if m["id"] == meeting_id:
+            m["title"] = request.title
+            m["date_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_meetings(data)
+            return {"status": "success", "message": "Meeting renamed", "new_title": m["title"]}
+    raise HTTPException(status_code=404, detail="Meeting not found")
 
 @app.get("/api/meetings/{meeting_id}/export")
 async def export_csv(meeting_id: str):

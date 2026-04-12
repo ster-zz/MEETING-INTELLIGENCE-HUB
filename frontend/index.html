@@ -1,35 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meeting Intelligence Hub - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>DECISIO | Intelligence Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-background": "#1b1c19",
+                "on-surface": "#1b1c19",
+                "surface": "#fbf9f4",
+                "primary": "#b02600",
+                "secondary": "#0058be",
+                "surface-container-low": "#f5f3ee",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#f0eee9",
+                "surface-container-high": "#eae8e3",
+                "surface-container-highest": "#e4e2dd",
+                "outline-variant": "#e8bdb3"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hanging-line { height: 1px; background-color: #1b1c19; width: 100px; }
+        .loading { opacity: 0.5; pointer-events: none; }
+    </style>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="logo">Meeting Intelligence Hub</div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Dashboard</a>
-            <a href="upload.html">Upload</a>
-        </div>
-    </nav>
-    <main class="container">
-        <header class="page-header">
-            <h1>Recent Meetings</h1>
-            <p>Your AI-analyzed meeting intelligence dashboard</p>
-        </header>
+<body class="bg-surface text-on-background font-body selection:bg-secondary selection:text-white">
+    <div class="flex min-h-screen">
+        <!-- SideNavBar - Full Height Pinterest Style -->
+        <aside class="hidden lg:flex flex-col py-8 bg-[#fbf9f4] w-20 border-r border-[#1b1c19] sticky top-0 h-screen z-50 items-center">
+            <div class="mb-10 flex flex-col items-center">
+                <span class="text-xs font-black text-[#1b1c19]">DECI</span>
+                <span class="text-[10px] font-black text-primary -mt-1">SIO</span>
+            </div>
+            <nav class="flex flex-col gap-6 w-full items-center">
+                <!-- Dashboard -->
+                <a class="group relative flex items-center justify-center w-12 h-12 rounded-2xl bg-[#e4e2dd] text-[#1b1c19] transition-all hover:bg-on-surface hover:text-white" href="index.html">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="absolute left-16 scale-0 group-hover:scale-100 transition-all origin-left bg-[#1b1c19] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap z-50 shadow-xl">
+                        Dashboard
+                    </span>
+                </a>
+                <!-- Workspaces -->
+                <a class="group relative flex items-center justify-center w-12 h-12 rounded-2xl text-zinc-500 transition-all hover:bg-on-surface hover:text-white" href="#">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="absolute left-16 scale-0 group-hover:scale-100 transition-all origin-left bg-[#1b1c19] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap z-50 shadow-xl">
+                        Workspaces
+                    </span>
+                </a>
+                <!-- Action Items -->
+                <a class="group relative flex items-center justify-center w-12 h-12 rounded-2xl text-zinc-500 transition-all hover:bg-on-surface hover:text-white" href="#">
+                    <span class="material-symbols-outlined">checklist</span>
+                    <span class="absolute left-16 scale-0 group-hover:scale-100 transition-all origin-left bg-[#1b1c19] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap z-50 shadow-xl">
+                        Action Items
+                    </span>
+                </a>
+            </nav>
+            <div class="mt-auto pb-4">
+                <button class="group relative flex items-center justify-center w-12 h-12 rounded-2xl text-zinc-400 hover:text-primary transition-all">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span class="absolute left-16 scale-0 group-hover:scale-100 transition-all origin-left bg-[#1b1c19] text-white text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap z-50 shadow-xl">
+                        Settings
+                    </span>
+                </button>
+            </div>
+        </aside>
 
-        <section class="meetings-grid" id="meetings-list">
-            <!-- Meetings will be injected here via JS -->
-            <div class="loading">Loading meetings...</div>
-        </section>
-    </main>
+        <!-- Right Side Container -->
+        <div class="flex-1 flex flex-col">
+            <!-- TopAppBar - Integrated -->
+            <nav class="bg-surface flex justify-between items-center px-8 py-4 w-full sticky top-0 z-40">
+                <div class="flex items-center gap-8">
+                    <div class="hidden md:flex gap-8 items-center">
+                        <a class="font-extrabold tracking-tight text-[#b02600] text-sm uppercase" href="index.html">Dashboard</a>
+                        <a class="font-extrabold tracking-tight text-zinc-400 hover:text-[#1b1c19] text-sm uppercase" href="#">Workspaces</a>
+                        <a class="font-extrabold tracking-tight text-zinc-400 hover:text-[#1b1c19] text-sm uppercase" href="#">Pricing</a>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                    <button class="font-extrabold tracking-tight text-[#1b1c19] hover:text-[#0058be] text-sm uppercase">Log in</button>
+                    <button class="bg-[#1b1c19] text-white px-5 py-2 rounded-xl font-bold active:scale-95 transition-transform text-xs uppercase tracking-widest">Sign up</button>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="flex-1 px-8 py-12 max-w-7xl w-full mx-auto">
+            <!-- Hero Section -->
+            <section class="mb-20">
+                <div class="hanging-line mb-6"></div>
+                <h1 class="text-6xl md:text-8xl font-black tracking-tight leading-[0.9] text-on-background mb-8">
+                    TURN TALK<br/>INTO <span class="text-primary italic">ACTION</span>.
+                </h1>
+                <p class="text-xl md:text-2xl text-zinc-600 max-w-2xl font-medium leading-relaxed">
+                    Deep-analyze meeting transcripts with emotional intelligence. Extract sentiment, identify complex task dependencies, and sync your team's rhythm effortlessly.
+                </p>
+            </section>
+
+            <!-- Upload Centerpiece -->
+            <section class="mb-16">
+                <div class="bg-surface-container-low p-2 rounded-[32px] border border-outline-variant/20 shadow-xl shadow-on-background/5">
+                    <form id="upload-form" class="bg-white rounded-[24px] p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                            <!-- Drop Area -->
+                            <div id="drop-area" class="group relative flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-2xl p-12 bg-surface-container/30 hover:bg-secondary/5 hover:border-secondary transition-all cursor-pointer">
+                                <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-6 shadow-lg shadow-secondary/20">
+                                    <span class="material-symbols-outlined text-white text-3xl">upload</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Drop your transcript here</h3>
+                                <p class="text-zinc-500 text-sm font-medium">Supports VTT, SRT, TXT</p>
+                                <input type="file" id="transcript-file" class="hidden" accept=".txt,.vtt">
+                            </div>
+
+                            <!-- Progress & Actions -->
+                            <div id="upload-progress-container" style="display: none;">
+                                <div class="bg-surface-container rounded-2xl p-6 mb-8 border border-outline-variant/10">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-secondary">description</span>
+                                            <div>
+                                                <p id="file-name-label" class="text-sm font-bold">file_name.vtt</p>
+                                                <p id="progress-status" class="text-xs text-zinc-500">Starting upload...</p>
+                                            </div>
+                                        </div>
+                                        <span id="progress-percent" class="text-sm font-black text-secondary">0%</span>
+                                    </div>
+                                    <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+                                        <div id="progress-bar" class="bg-secondary h-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-4">
+                                    <button type="button" id="cancel-btn" class="flex-1 px-6 py-4 rounded-xl border border-on-surface font-bold text-sm uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" id="upload-btn" class="flex-[2] px-6 py-4 rounded-xl bg-gradient-to-br from-primary to-emerald-600 text-white font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                                        Confirm & Analyze
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Recent Insights Grid -->
+            <section>
+                <div class="flex items-end justify-between mb-10">
+                    <div>
+                        <div class="hanging-line mb-4"></div>
+                        <h2 class="text-4xl font-black tracking-tighter uppercase">Recent Insights</h2>
+                    </div>
+                    <a class="text-secondary font-bold border-b border-secondary pb-1 hover:text-primary hover:border-primary transition-colors" href="#">View Archive</a>
+                </div>
+                <div id="meetings-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic meeting cards injected here -->
+                    <div class="col-span-full py-20 text-center text-zinc-400">Loading your intelligence hub...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface bg-opacity-90 backdrop-blur-md border-t border-[#1b1c19]">
+        <a class="flex flex-col items-center justify-center text-primary scale-110" href="index.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="font-semibold text-[10px] uppercase tracking-widest mt-1">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-zinc-400" href="#">
+            <span class="material-symbols-outlined">folder</span>
+            <span class="font-semibold text-[10px] uppercase tracking-widest mt-1">Files</span>
+        </a>
+        <div class="relative -top-4">
+            <button class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/40 active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-3xl">add</span>
+            </button>
+        </div>
+        <a class="flex flex-col items-center justify-center text-zinc-400" href="#">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="font-semibold text-[10px] uppercase tracking-widest mt-1">Alerts</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-zinc-400" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-semibold text-[10px] uppercase tracking-widest mt-1">Profile</span>
+        </a>
+    </nav>
 
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', fetchMeetings);
+        
+        // Setup simple dropzone interaction
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('transcript-file');
+        const progressContainer = document.getElementById('upload-progress-container');
+
+        if (dropArea) dropArea.onclick = () => fileInput.click();
+
+        if (fileInput) {
+            fileInput.onchange = (e) => {
+                if (e.target.files.length > 0) {
+                    document.getElementById('file-name-label').textContent = e.target.files[0].name;
+                    progressContainer.style.display = 'block';
+                    dropArea.style.display = 'none';
+                }
+            };
+        }
+
+        const uploadForm = document.getElementById('upload-form');
+        if (uploadForm) uploadForm.addEventListener('submit', handleUpload);
     </script>
 </body>
 </html>

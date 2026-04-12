@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meeting Intelligence Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#ffb4a2",
+                      "inverse-surface": "#30312e",
+                      "on-background": "#1b1c19",
+                      "secondary-fixed": "#d8e2ff",
+                      "tertiary": "#5c5c5c",
+                      "on-surface": "#1b1c19",
+                      "on-primary-container": "#fffbff",
+                      "surface-container-highest": "#e4e2dd",
+                      "inverse-primary": "#ffb4a2",
+                      "primary": "#b02600",
+                      "tertiary-fixed": "#e2e2e2",
+                      "surface": "#fbf9f4",
+                      "surface-dim": "#dbdad5",
+                      "on-primary-fixed": "#3d0700",
+                      "tertiary-container": "#747474",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-secondary-fixed": "#001a42",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#ffdad2",
+                      "on-surface-variant": "#5e3f38",
+                      "secondary-container": "#2170e4",
+                      "surface-container": "#f0eee9",
+                      "on-secondary-container": "#fefcff",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "outline": "#936f66",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "surface-bright": "#fbf9f4",
+                      "surface-container-high": "#eae8e3",
+                      "on-primary-fixed-variant": "#8a1c00",
+                      "background": "#fbf9f4",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#0058be",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "primary-container": "#dd3200",
+                      "error": "#ba1a1a",
+                      "surface-variant": "#e4e2dd",
+                      "outline-variant": "#e8bdb3",
+                      "inverse-on-surface": "#f2f1ec",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "surface-container-low": "#f5f3ee",
+                      "surface-tint": "#b52700",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#fcfcfc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Inter"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            border-left: 1px solid #1b1c19;
+        }
+        .hanging-line {
+            height: 1px;
+            background-color: #1b1c19;
+            width: 100px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background font-body selection:bg-secondary selection:text-white">
+<!-- TopAppBar -->
+<nav class="bg-[#fbf9f4] dark:bg-zinc-950 border-b border-[#1b1c19] dark:border-zinc-800 flex justify-between items-center px-8 py-4 w-full sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black uppercase tracking-tighter text-[#1b1c19] dark:text-zinc-100">Meeting Intelligence Hub</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-['Inter'] font-extrabold tracking-tight text-[#b02600] dark:text-[#ff3b00] border-b-2 border-[#b02600] hover:text-[#0058be] transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-['Inter'] font-extrabold tracking-tight text-[#1b1c19] dark:text-zinc-400 hover:text-[#0058be] transition-colors duration-200" href="#">Workspaces</a>
+<a class="font-['Inter'] font-extrabold tracking-tight text-[#1b1c19] dark:text-zinc-400 hover:text-[#0058be] transition-colors duration-200" href="#">History</a>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<button class="font-['Inter'] font-extrabold tracking-tight text-[#1b1c19] dark:text-zinc-400 hover:text-[#0058be] transition-colors duration-200">Log in</button>
+<button class="bg-primary text-white px-5 py-2 rounded-xl font-bold active:scale-95 transition-transform">Sign up</button>
+</div>
+</nav>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-full py-8 bg-[#f5f3ee] dark:bg-zinc-900 h-screen w-64 border-r border-[#1b1c19] dark:border-zinc-800 sticky top-[73px]">
+<div class="px-6 mb-8">
+<p class="text-lg font-bold text-[#1b1c19] dark:text-zinc-100">AI Hub</p>
+<p class="font-['Inter'] font-medium text-[10px] tracking-wide uppercase text-zinc-500">Enterprise Edition</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 py-3 font-['Inter'] font-medium text-sm tracking-wide uppercase text-[#1b1c19] dark:text-zinc-100 font-bold border-l-4 border-[#b02600] pl-4 hover:bg-[#e4e2dd] dark:hover:bg-zinc-800 transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 py-3 font-['Inter'] font-medium text-sm tracking-wide uppercase text-zinc-500 dark:text-zinc-400 pl-5 hover:bg-[#e4e2dd] dark:hover:bg-zinc-800 transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                    Workspaces
+                </a>
+<a class="flex items-center gap-3 py-3 font-['Inter'] font-medium text-sm tracking-wide uppercase text-zinc-500 dark:text-zinc-400 pl-5 hover:bg-[#e4e2dd] dark:hover:bg-zinc-800 transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+                    Action Items
+                </a>
+<a class="flex items-center gap-3 py-3 font-['Inter'] font-medium text-sm tracking-wide uppercase text-zinc-500 dark:text-zinc-400 pl-5 hover:bg-[#e4e2dd] dark:hover:bg-zinc-800 transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Analytics
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 px-8 py-12 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-20">
+<div class="grid grid-cols-12 gap-8 items-start">
+<div class="col-span-12 lg:col-span-8">
+<div class="hanging-line mb-6"></div>
+<h1 class="text-6xl md:text-8xl font-black tracking-tight leading-[0.9] text-on-background mb-8">
+                            TURN TALK<br/>INTO <span class="text-primary italic">ACTION</span>.
+                        </h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl font-medium leading-relaxed">
+                            Deep-analyze meeting transcripts with emotional intelligence. Extract sentiment, identify complex task dependencies, and sync your team's rhythm effortlessly.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Upload Centerpiece -->
+<section class="mb-16">
+<div class="bg-surface-container-low p-2 rounded-[32px] border border-outline-variant/20 shadow-xl shadow-on-background/5">
+<div class="bg-surface-container-lowest rounded-[24px] p-8 md:p-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<!-- Drop Area -->
+<div class="group relative flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-2xl p-12 bg-surface-container/30 hover:bg-secondary/5 hover:border-secondary transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-6 shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="upload">upload</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Drop your transcript here</h3>
+<p class="text-on-surface-variant text-sm font-medium">Supports VTT, SRT, TXT, and PDF</p>
+</div>
+<!-- Progress & Actions -->
+<div>
+<div class="bg-surface-container rounded-2xl p-6 mb-8 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="description">description</span>
+<div>
+<p class="text-sm font-bold">Meeting_Transcript.vtt</p>
+<p class="text-xs text-on-surface-variant">24 KB • 2 sec left</p>
+</div>
+</div>
+<span class="text-sm font-black text-secondary">82%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full transition-all duration-300" style="width: 82%"></div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex-1 px-6 py-4 rounded-xl border border-on-surface font-bold text-sm uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                                        Cancel
+                                    </button>
+<button class="flex-[2] px-6 py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                                        Upload &amp; Analyze
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Settings Bar -->
+<div class="mt-8 flex flex-wrap items-center justify-between gap-6 bg-surface-container px-8 py-4 rounded-2xl border border-on-surface/5">
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1">Language</span>
+<select class="bg-transparent border-none p-0 font-bold text-sm focus:ring-0 cursor-pointer">
+<option>English (US)</option>
+<option>German (DE)</option>
+<option>Japanese (JP)</option>
+</select>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant">Speaker Recognition</span>
+<button class="w-10 h-5 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-4 flex-1 max-w-xs">
+<span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap">Sentiment Depth</span>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+</div>
+</section>
+<!-- Recent Insights Grid -->
+<section>
+<div class="flex items-end justify-between mb-10">
+<div>
+<div class="hanging-line mb-4"></div>
+<h2 class="text-4xl font-black tracking-tighter uppercase">Recent Insights</h2>
+</div>
+<a class="text-secondary font-bold border-b border-secondary pb-1 hover:text-primary hover:border-primary transition-colors" href="#">View All Archive</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border-b-4 border-on-surface hover:shadow-2xl transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
+<span class="text-[10px] font-black uppercase tracking-widest text-emerald-600">Positive Alignment</span>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">OCT 24 • 14:20</span>
+</div>
+<h3 class="text-2xl font-black mb-4 leading-tight group-hover:text-secondary transition-colors">Product Sync: Q4 Roadmap &amp; Resource Allocation</h3>
+<div class="flex gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">#ProjectX</span>
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">#Planning</span>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="task_alt">task_alt</span>
+<span class="text-xs font-bold text-on-surface">3 Tasks Identified</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="arrow_forward">arrow_forward</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border-b-4 border-on-surface hover:shadow-2xl transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]"></div>
+<span class="text-[10px] font-black uppercase tracking-widest text-amber-600">Neutral/Mixed</span>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">OCT 23 • 09:15</span>
+</div>
+<h3 class="text-2xl font-black mb-4 leading-tight group-hover:text-secondary transition-colors">Stakeholder Interview: UX Research Phase 2</h3>
+<div class="flex gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">#UserTesting</span>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="task_alt">task_alt</span>
+<span class="text-xs font-bold text-on-surface">12 Insights Logged</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="arrow_forward">arrow_forward</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border-b-4 border-on-surface hover:shadow-2xl transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(176,38,0,0.6)]"></div>
+<span class="text-[10px] font-black uppercase tracking-widest text-primary">High Urgency</span>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">OCT 22 • 16:45</span>
+</div>
+<h3 class="text-2xl font-black mb-4 leading-tight group-hover:text-secondary transition-colors">Emergency Debug: API Latency Spike Post-Launch</h3>
+<div class="flex gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">#Incident</span>
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">#Ops</span>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="task_alt">task_alt</span>
+<span class="text-xs font-bold text-on-surface">5 Critical Fixes</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="arrow_forward">arrow_forward</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Context/Stats Section -->
+<section class="mt-20 pt-20 border-t border-on-surface/10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-4">
+<h4 class="text-xs font-black uppercase tracking-widest text-on-surface-variant mb-6">Hub Intelligence</h4>
+<div class="space-y-6">
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black">2,410</span>
+<span class="text-xs font-bold text-on-surface-variant uppercase">Minutes Processed</span>
+</div>
+<div class="w-full bg-surface-container h-px"></div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black">84%</span>
+<span class="text-xs font-bold text-on-surface-variant uppercase">Sentiment Accuracy</span>
+</div>
+<div class="w-full bg-surface-container h-px"></div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black">15</span>
+<span class="text-xs font-bold text-on-surface-variant uppercase">Active Workspaces</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8">
+<div class="relative rounded-3xl overflow-hidden aspect-video bg-surface-container-high group">
+<img alt="Collaboration" class="w-full h-full object-cover grayscale contrast-125 opacity-40 mix-blend-multiply transition-transform duration-700 group-hover:scale-105" data-alt="Monochrome overhead view of a diverse professional team collaborating around a large table in a bright minimalist office space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYqFN2zFRx7nv1Kh65k6ubbBcjLv-ARYxOpPwaMQzPIOEWR71f3XEuPa1iuebM3y1hPopVBqjFmTqZR2VczmfCw7SVzlPREpoI98qTKmWg0hELPev_ObEpjVFF3aAK428tYaryVJqQJww0RRIOOeOq3sA8pu1vXxOMt1ej7vJ-fW_xi3DlvUVKXrYAlpan0KBlzYoDRFbZarowyMmRGVLo6j2-ghpmDh2NymC7fMPwv-aNW9lyWTp3WtrCIw40ncjDjiNIdKiFVl8q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<h3 class="text-3xl font-black tracking-tight mb-2 uppercase">Connect your workflow</h3>
+<p class="text-on-surface-variant font-medium max-w-md">Seamlessly integrate with Slack, Jira, and Notion to push action items where they belong.</p>
+<button class="mt-6 flex items-center gap-2 bg-on-surface text-surface px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-secondary transition-colors">
+                                Browse Integrations <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#fbf9f4] bg-opacity-90 backdrop-blur-md border-t border-[#1b1c19] dark:border-zinc-800">
+<a class="flex flex-col items-center justify-center text-[#b02600] dark:text-[#ff3b00] scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] font-semibold text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b1c19] dark:text-zinc-400 opacity-60" href="#">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+<span class="font-['Inter'] font-semibold text-[10px] uppercase tracking-widest mt-1">Files</span>
+</a>
+<div class="relative -top-4">
+<button class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="add_circle">add_circle</span>
+</button>
+</div>
+<a class="flex flex-col items-center justify-center text-[#1b1c19] dark:text-zinc-400 opacity-60" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-['Inter'] font-semibold text-[10px] uppercase tracking-widest mt-1">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b1c19] dark:text-zinc-400 opacity-60" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-semibold text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
