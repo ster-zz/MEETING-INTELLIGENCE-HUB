@@ -8,16 +8,16 @@
   ],
   "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/main.py"
+      "source": "/api/(.*)",
+      "destination": "backend/main.py"
     },
     {
-      "src": "/ui/(.*)",
-      "dest": "frontend/$1"
+      "source": "/ui/(.*)",
+      "destination": "frontend/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "frontend/$1"
+      "source": "/(.*)",
+      "destination": "frontend/$1"
     }
   ]
 }
