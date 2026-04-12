@@ -41,18 +41,34 @@ class ChatRequest(BaseModel):
     meeting_id: str
     message: str
 
+# Vercel-compatible In-Memory Fallback
+MEETINGS_CACHE = []
+
 def load_meetings():
-    if not os.path.exists("meetings.json") or os.path.getsize("meetings.json") == 0:
-        return {"meetings": []}
-    with open("meetings.json", "r", encoding="utf-8") as f:
-        try:
-            return json.load(f)
-        except:
-            return {"meetings": []}
+    global MEETINGS_CACHE
+    disk_data = {"meetings": []}
+    if os.path.exists("meetings.json") and os.path.getsize("meetings.json") > 0:
+        with open("meetings.json", "r", encoding="utf-8") as f:
+            try:
+                disk_data = json.load(f)
+            except:
+                pass
+    
+    # Merge disk and memory (avoid duplicates by ID)
+    merged = disk_data["meetings"] + [m for m in MEETINGS_CACHE if m["id"] not in [dm["id"] for dm in disk_data["meetings"]]]
+    return {"meetings": merged}
 
 def save_meetings(data):
-    with open("meetings.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    global MEETINGS_CACHE
+    # Always update memory first (works on Vercel)
+    MEETINGS_CACHE = data["meetings"]
+    
+    # Try to update disk (works locally, fails gracefully on Vercel)
+    try:
+        with open("meetings.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
+    except Exception as e:
+        print(f"[Vercel] Disk write skipped: {e}")
 
 @app.post("/api/upload")
 async def upload_meeting(file: UploadFile = File(...)):
