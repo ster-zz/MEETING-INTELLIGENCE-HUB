@@ -102,4 +102,5 @@ Meeting Transcript:
             return fallback
     except Exception as e:
         print("Extraction failed:", e)
+        fallback["summary"] = f"Extraction failed: {str(e)}"
         return fallback
